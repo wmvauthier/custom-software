@@ -17,32 +17,35 @@ O Projeto conta com alguns Scripts que auxiliam no gerenciamento do Banco de Dad
 Script que cria as Tabelas no Banco de Dados de produção
 
 ```bash
-yarn create-table```
-
+yarn create-table
+```
 ### initial-database
 
 Script que instancia uma base de dados inicial aleatória
 
 ```bash
-yarn initial-database```
-
+yarn initial-database
+```
 ### test
 
 Script que executa os testes da Aplicação
 
 ```bash
-yarn initial-database```
+yarn initial-database
+```
 
 ### start
 
 Script que roda a Aplicação em modo de Produção
 
 ```bash
-yarn start```
+yarn start
+```
 
 ### dev
 
 Script que roda a Aplicação em modo da Desenvolvimento com Nodemon
 
 ```bash
-yarn dev```
+yarn dev
+```
