@@ -20,7 +20,7 @@ var limiter = new RateLimit({
     delayMs: 0
 });
 
-// app.use(limiter);
+app.use(limiter);
 
 //Permite a Requisição através de Scripts Externos
 app.use(function (req, res, next) {
