@@ -1,0 +1,1 @@
+IP_DO_SERVIDOR = 'localhost';

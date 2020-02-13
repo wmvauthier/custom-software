@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Software Sob Medida</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/fonts/circular-std/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/libs/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/datatables/css/buttons.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/datatables/css/select.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/no-more-tables.css">
+
+</head>
+
+<body>
+
+    <div class="row margin1">
+
+        <div class="col-sm-12 col-md-3 col-lg-3">
+            <div class="card">
+                <h5 class="card-header container">
+                    <img src="images/logo.png" alt="Software Sob Medida">
+                </h5>
+            </div>
+            <div class="card">
+                <h5 class="card-header">Ranking do Total por Empresa</h5>
+                <div id="style-2" class="card-body smlTable">
+                    <table class="table table-striped table-bordered">
+                        <thead class="cf">
+                            <tr>
+                                <th>Empresa</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registerTotalTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-9 col-lg-9" style="height: 100%;">
+
+            <div class="card">
+                <h5 class="card-header">Valores Adquiridos por Empresa</h5>
+                <div class="card-body">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-md-6">
+                                <div id="companyValueGraph"></div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-md-6">
+                                <div id="companyValueBars"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+    <div class="row margin1">
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+            <div class="card-header">
+                <h5 class="mb-0">Lista de Registros Cadastrados
+                    <button id="btnPreRegisterRegister" class="btn btn-rounded btn-success floatingRightButton"
+                        data-toggle="modal" data-target="#registerRegisterModal" data-backdrop="static">Adicionar
+                    </button>
+                </h5>
+            </div>
+
+            <div class="card-header">
+                <div class="no-more-tables">
+                    <table id="no-more-tables" class="table table-striped table-bordered" style="width:100%">
+                        <thead class="cf">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Empresa</th>
+                                <th>Valor</th>
+                                <th class="centered">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registerTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <!-- Modal para Inserção de Usuários -->
+        <div class="modal fade" id="registerRegisterModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Insira as Informações do Novo Registro</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="registerRegisterForm">
+                            <div class="form-group">
+                                <label for="register_name" class="col-form-label">Nome</label>
+                                <input id="register_name" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register_company" class="col-form-label">Empresa</label>
+                                <input id="register_company" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register_value" class="col-form-label">Valor</label>
+                                <input id="register_value" type="number" step=0.01
+                                    class="form-control validationInput_Value" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" form="registerRegisterForm"
+                            class="btn btn-rounded btn-success">Inserir</button>
+                        <button type="button" class="btn btn-rounded btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal para Edição de Usuários -->
+        <div class="modal fade" id="updateRegisterModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Insira as Novas Informações do Registro</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="updateRegisterForm">
+                            <div class="form-group">
+                                <label for="id_registerUpd" class="col-form-label">ID</label>
+                                <input id="id_registerUpd" disabled type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="register_nameUpd" class="col-form-label">Nome</label>
+                                <input id="register_nameUpd" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register_companyUpd" class="col-form-label">Empresa</label>
+                                <input id="register_companyUpd" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register_valueUpd" class="col-form-label">Valor</label>
+                                <input id="register_valueUpd" type="number" step=0.01
+                                    class="form-control validationInput_Value" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" form="updateRegisterForm"
+                            class="btn btn-rounded btn-success">Alterar</button>
+                        <button type="button" class="btn btn-rounded btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal para Exclusão de Usuários -->
+        <div class="modal fade" id="deleteRegisterModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h4>Você deseja mesmo excluir este Registro?</h4>
+                        <h5 id="textDel" class="centeredX"></h5>
+                        <form id="deleteRegisterForm">
+                            <input id="id_registerDel" class="invisible" />
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" form="deleteRegisterForm" class="btn btn-rounded btn-success">Sim</button>
+                        <button type="button" class="btn btn-rounded btn-danger" data-dismiss="modal">Não</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+
+    <!-- JavaScript Libraries -->
+    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../assets/vendor/datatables/js/dataTables.buttons.min.js"></script>
+    <script src="../assets/vendor/datatables/js/buttons.bootstrap4.min.js"></script>
+    <script src="../assets/vendor/datatables/js/data-table.js"></script>
+
+    <!-- Biblioteca que contém os JS para os Gráficos -->
+    <script src="../assets/vendor/charts/c3charts/c3.min.js"></script>
+    <script src="../assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+
+    <!-- Biblioteca que contém os Métodos de Requisição-->
+    <script src="js/system/httpRequisitions.js"></script>
+
+    <!-- Biblioteca que contém os Métodos da Data Table-->
+    <script src="js/system/dataTable.js"></script>
+
+    <!-- Bibliotecas que contém os Validadores de Input-->
+    <script src="js/system/validationInput.js"></script>
+    <script src="js/system/jquery.mask.js"></script>
+
+    <!-- Biblioteca que contém os Métodos de Interação-->
+    <script src="js/interactions.js"></script>
+
+    <!-- Graffio JS que contém a Configuração do Servidor-->
+    <script src="js/system/serverConfig.js"></script>
+
+    <script>if (window.module) module = window.module;</script>
+
+</body>
+
+<script>
+
+</script>
+
+</html>
